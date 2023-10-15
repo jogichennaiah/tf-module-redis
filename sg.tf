@@ -8,8 +8,8 @@ resource "aws_security_group" "allows_docdb" {
 
   ingress {
     description      = "SSH from Public Network"
-    from_port        = 27017
-    to_port          = 27017
+    from_port        = 6379
+    to_port          = 6379
     protocol         = "tcp"
     cidr_blocks      = [data.terraform_remote_state.vpc.outputs.VPC_CIDR]
   }
@@ -23,6 +23,6 @@ resource "aws_security_group" "allows_docdb" {
   }
 
   tags = {
-    Name = "allows_public_ssh"
+    Name = "roboshop-${var.ENV}-redis-sg"
   }
 }
