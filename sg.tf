@@ -1,13 +1,12 @@
-# Creating security group
-
+# Creates Security Group
 resource "aws_security_group" "allows_redis" {
-  name        = "Roboshop allows docdb internal traffic only"
-  description = "Allows only private traffic"
-  vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_CIDR
+  name        = "Roboshop allows redis internal traffic only"
+  description = "Allows Only private traffic"
+  vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
 
 
   ingress {
-    description      = "redis from Private Network"
+    description      = "redis from private Network"
     from_port        = var.REDIS_PORT
     to_port          = var.REDIS_PORT
     protocol         = "tcp"
